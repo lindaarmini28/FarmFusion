@@ -30,7 +30,7 @@ class DBHelper {
     await db.execute('''
       CREATE TABLE posts(
         id INTEGER PRIMARY KEY,
-        image BLOB, // Menggunakan tipe data BLOB untuk menyimpan gambar
+        image BLOB,
         type TEXT,
         title TEXT,
         location TEXT,

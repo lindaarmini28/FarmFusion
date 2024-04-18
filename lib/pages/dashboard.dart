@@ -57,9 +57,9 @@ class _DashboardState extends State<Dashboard> {
             label: 'Chat',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.store, color: Constants.secondaryColor), 
+            icon: Icon(Icons.store, color: Constants.secondaryColor),
             label: 'Sale',
-            ),
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person, color: Constants.secondaryColor),
             label: 'Profile',
@@ -72,14 +72,20 @@ class _DashboardState extends State<Dashboard> {
             children: [
               const MyHeaderDrawer(),
               ListTile(
-                leading: const Icon(Icons.home, color: Constants.secondaryColor),
+                leading:
+                    const Icon(Icons.home, color: Constants.secondaryColor),
                 title: const Text('Dashboard'),
                 onTap: () {
-                  Navigator.pop(context);
+                  setState(() {
+                    activeIndex =
+                        0; // Ganti indeks sesuai dengan halaman yang Anda inginkan
+                  });
+                  Navigator.pop(context); // Tutup drawer setelah navigasi
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.notifications, color: Constants.secondaryColor),
+                leading: const Icon(Icons.notifications,
+                    color: Constants.secondaryColor),
                 title: const Text('Notification'),
                 onTap: () {
                   Navigator.push(
@@ -89,7 +95,8 @@ class _DashboardState extends State<Dashboard> {
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.task, color: Constants.secondaryColor),
+                leading:
+                    const Icon(Icons.task, color: Constants.secondaryColor),
                 title: const Text('Task API'),
                 onTap: () {
                   Navigator.push(
@@ -100,13 +107,21 @@ class _DashboardState extends State<Dashboard> {
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.task, color: Constants.secondaryColor),
+                leading:
+                    const Icon(Icons.task, color: Constants.secondaryColor),
                 title: const Text('Task CRUD'),
-                onTap: () {},
+                onTap: () {
+                  setState(() {
+                    activeIndex =
+                        2; // Ganti indeks sesuai dengan halaman yang Anda inginkan
+                  });
+                  Navigator.pop(context); // Tutup drawer setelah navigasi
+                },
               ),
               const Divider(),
               ListTile(
-                leading: const Icon(Icons.settings, color: Constants.secondaryColor),
+                leading:
+                    const Icon(Icons.settings, color: Constants.secondaryColor),
                 title: const Text('Settings'),
                 onTap: () {
                   Navigator.push(context,
@@ -114,17 +129,17 @@ class _DashboardState extends State<Dashboard> {
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.info, color: Constants.secondaryColor),
+                leading:
+                    const Icon(Icons.info, color: Constants.secondaryColor),
                 title: const Text('About'),
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AboutScreen()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AboutScreen()));
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.exit_to_app, color: Constants.secondaryColor),
+                leading: const Icon(Icons.exit_to_app,
+                    color: Constants.secondaryColor),
                 title: const Text('Logout'),
                 onTap: () {
                   Navigator.pushReplacement(context,
