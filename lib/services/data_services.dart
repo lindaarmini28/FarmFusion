@@ -1,7 +1,9 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:farmfusion_app/endpoints/endpoints.dart';
+// ignore: depend_on_referenced_packages
 import 'package:farmfusion_app/dto/news.dart';
+import 'package:http/http.dart' as http;
+import 'package:farmfusion_app/dto/datas.dart';
+import 'package:farmfusion_app/endpoints/endpoints.dart';
 
 class DataServices {
   static Future<List<News>> fetchNews() async {
@@ -14,49 +16,38 @@ class DataServices {
     }
   }
 
-  static Future<void> createNews(String title, String body) async {
-    final response = await http.post(
-      Uri.parse(Endpoints.news),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'title': title,
-        'body': body,
-      }),
-    );
-
-    if (response.statusCode != 201) {
-      throw Exception('Failed to create news');
-    }
+   static Future<void> sendNews(String title, String body) async {
+    Map<String, String> newsData = {
+      "title": title,
+      "body": body,
+    };
+    String jsonData = jsonEncode(newsData);
+    await http.post(Uri.parse(Endpoints.news),
+        body: jsonData, headers: {'Content-Type': 'application/json'});
   }
 
-  static Future<void> updateNews(int id, String title, String body) async {
-    final response = await http.put(
-      Uri.parse('${Endpoints.news}/$id'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'title': title,
-        'body': body,
-      }),
-    );
+  static Future<void> deleteData(String id) async {
+    await http.delete(Uri.parse('${Endpoints.news}/$id'),
+        headers: {'Content-type': 'application/json'});
+  }
 
+  static Future<void> updateData(String id, String title, String body) async {
+    Map<String, String> data = {"id": id, "title": title, "body": body};
+    String jsonData = jsonEncode(data);
+    await http.put(Uri.parse('${Endpoints.news}/$id'),
+        body: jsonData, headers: {'Content-type': 'application/json'});
+  }
+
+   static Future<List<Datas>> fetchDatas() async {
+    final response = await http.get(Uri.parse(Endpoints.datas));
     if (response.statusCode == 200) {
-      print('News updated successfully');
+      final data = jsonDecode(response.body) as Map<String, dynamic>;
+      return (data['datas']as List<dynamic>)
+          .map((item) => Datas.fromJson(item as Map<String, dynamic>))
+          .toList();
     } else {
-      throw Exception('Failed to update news');
+      // Handle error
+      throw Exception('Failed to load Datas');
+      }
     }
-  }
-
-  static Future<void> deleteNews(int id) async {
-    final response = await http.delete(Uri.parse('${Endpoints.news}/$id'));
-
-    if (response.statusCode == 200) {
-      print('News deleted successfully');
-    } else {
-      throw Exception('Failed to delete news');
-    }
-  }
 }

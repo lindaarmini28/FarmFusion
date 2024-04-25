@@ -10,6 +10,8 @@ import 'package:farmfusion_app/utils/constants.dart';
 import 'package:farmfusion_app/pages/header_drawer.dart';
 import 'package:farmfusion_app/pages/news_feed.dart';
 import 'package:farmfusion_app/pages/login.dart';
+import 'package:farmfusion_app/pages/data_screen.dart';
+
 
 class Dashboard extends StatefulWidget {
   @override
@@ -116,6 +118,14 @@ class _DashboardState extends State<Dashboard> {
                         2; // Ganti indeks sesuai dengan halaman yang Anda inginkan
                   });
                   Navigator.pop(context); // Tutup drawer setelah navigasi
+                },
+              ),
+              ListTile(
+                leading: 
+                const Icon(Icons.task, color: Constants.secondaryColor),
+                title: const Text('Task Upload Image'),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const DatasScreen()));
                 },
               ),
               const Divider(),
