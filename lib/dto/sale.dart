@@ -1,5 +1,3 @@
-import 'dart:io';
-
 // Digunakan untuk membuat class Post yang berisi atribut yang akan digunakan untuk menyimpan data dari database
 class Post {
   int? id;
