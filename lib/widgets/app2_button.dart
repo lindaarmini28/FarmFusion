@@ -4,15 +4,20 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../utils/constants.dart';
 
-enum ButtonType { primary, plain}
+enum ButtonType { primary, plain }
 
 class AppButton extends StatelessWidget {
   final ButtonType type;
   final VoidCallback onPressed;
   final String text;
+  final IconData? icon;
 
-  const AppButton(
-      {required this.type, required this.onPressed, required this.text});
+  const AppButton({
+    required this.type,
+    required this.onPressed,
+    required this.text,
+    this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +39,26 @@ class AppButton extends StatelessWidget {
             )
           ],
         ),
-        child: Center(
-          child: Text(
-            text,
-            style: GoogleFonts.roboto(
-              color: getTextColor(type),
-              fontSize: 19.0,
-              fontWeight: FontWeight.w500,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (icon != null) ...[
+              Icon(
+                icon,
+                color: getTextColor(type),
+                size: 19.0,
+              ),
+              const SizedBox(width: 8.0),
+            ],
+            Text(
+              text,
+              style: GoogleFonts.roboto(
+                color: getTextColor(type),
+                fontSize: 19.0,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
@@ -70,4 +86,3 @@ Color getTextColor(ButtonType type) {
       return Colors.white;
   }
 }
-

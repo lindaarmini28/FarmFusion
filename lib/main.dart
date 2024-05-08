@@ -1,3 +1,5 @@
+import 'package:farmfusion_app/pages/UTS_2215091014/utsscreen.dart';
+import 'package:farmfusion_app/pages/latihan_uts/uts_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:farmfusion_app/pages/home.dart';
 import 'package:farmfusion_app/pages/login.dart';
@@ -21,6 +23,8 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const Home(),
         '/login': (context) => const Login(),
         '/dashboard': (context) =>  Dashboard(),
+        '/lat-uts-screen': (context) => const LatUtsScreen(),
+        '/uts-cs-screen' :(context) => const UtsCSScreen(),
       },
       onGenerateRoute: _onGenerateRoute, // Add this line
     );

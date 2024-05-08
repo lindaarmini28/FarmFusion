@@ -29,7 +29,25 @@ class _DatasScreenState extends State<DatasScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Data List'),
+        title: Text(
+          'Data List',
+          style: GoogleFonts.roboto(
+            fontSize: 22,
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        backgroundColor: Constants.secondaryColor,
+        leading: IconButton(
+          icon: const Icon(Icons
+              .arrow_back, color: Colors.white,), // Customize icon (optional)// Customize color (optional)
+          onPressed: () {
+            // Your custom back button functionality here
+            Navigator.pushReplacementNamed(
+                context, '/dashboard'); // Default back button behavior
+            // You can add additional actions here (e.g., show confirmation dialog)
+          },
+        ),
       ),
       body: Center(
         child: FutureBuilder<List<Datas>>(

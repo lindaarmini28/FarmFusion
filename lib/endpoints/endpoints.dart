@@ -7,4 +7,7 @@ class Endpoints {
 
   static const String news = "$baseURL/news";
   static const String datas = "$baseURLLive/api/datas";
+  static const String custserv = "$baseURLLive/api/customer-service";
+  static const String uts = "$custserv/2215091014";
+  static const String endUTS = "https://simobile.singapoly.com/api/customer-service/2215091014";
 }

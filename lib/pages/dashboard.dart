@@ -1,3 +1,5 @@
+import 'package:farmfusion_app/pages/UTS_2215091014/utsscreen.dart';
+import 'package:farmfusion_app/pages/latihan_uts/uts_screen.dart';
 import 'package:farmfusion_app/pages/about_screen.dart';
 import 'package:farmfusion_app/pages/dashboard_fragments/dashboard%20chat/dashboard_chat.dart';
 import 'package:farmfusion_app/pages/dashboard_fragments/dashboard%20profil/component/notification.dart';
@@ -11,7 +13,7 @@ import 'package:farmfusion_app/pages/header_drawer.dart';
 import 'package:farmfusion_app/pages/news_feed.dart';
 import 'package:farmfusion_app/pages/login.dart';
 import 'package:farmfusion_app/pages/data_screen.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -32,12 +34,27 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "FarmFusion",
-          style: TextStyle(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.white),
+        title: Row(
+          mainAxisAlignment:
+              MainAxisAlignment.start, // Center the Row's children
+          children: [
+            Image.asset("assets/images/logo_apk.png",
+                width: 30, height: 30), // Adjust size
+            const SizedBox(width: 10.0), // Spacing between logo and title
+            Text(
+              "FarmFusion",
+              style: GoogleFonts.roboto(
+                fontSize: 22,
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
         ),
         backgroundColor: Constants.secondaryColor,
         elevation: 0.0,
+        centerTitle: true,
       ),
       body: _screens[activeIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -121,11 +138,35 @@ class _DashboardState extends State<Dashboard> {
                 },
               ),
               ListTile(
-                leading: 
-                const Icon(Icons.task, color: Constants.secondaryColor),
+                leading:
+                    const Icon(Icons.task, color: Constants.secondaryColor),
                 title: const Text('Task Upload Image'),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const DatasScreen()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DatasScreen()));
+                },
+              ),
+              ListTile(
+                leading:
+                    const Icon(Icons.task, color: Constants.secondaryColor),
+                title: const Text('Latihan UTS'),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LatUtsScreen()));
+                },
+              ),
+              const Divider(),
+              ListTile(
+                leading:
+                    const Icon(Icons.task_alt, color: Constants.secondaryColor),
+                title: const Text('UTS_2215091014'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => UtsCSScreen()));
                 },
               ),
               const Divider(),

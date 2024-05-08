@@ -6,6 +6,7 @@ import 'package:farmfusion_app/services/data_services.dart';
 import 'package:farmfusion_app/endpoints/endpoints.dart';
 import 'package:farmfusion_app/pages/formScreen/form_screen.dart';
 import 'package:farmfusion_app/utils/constants.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NewsFeed extends StatefulWidget {
   const NewsFeed({Key? key}) : super(key: key);
@@ -198,7 +199,25 @@ class _NewsFeedState extends State<NewsFeed> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('News'),
+        title: Text(
+          'News Feed',
+          style: GoogleFonts.roboto(
+            fontSize: 22,
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        backgroundColor: Constants.secondaryColor,
+        leading: IconButton(
+          icon: const Icon(Icons
+              .arrow_back, color: Colors.white,), // Customize icon (optional)// Customize color (optional)
+          onPressed: () {
+            // Your custom back button functionality here
+            Navigator.pushReplacementNamed(
+                context, '/dashboard'); // Default back button behavior
+            // You can add additional actions here (e.g., show confirmation dialog)
+          },
+        ),
       ),
       body: Center(
         child: FutureBuilder<List<News>>(
